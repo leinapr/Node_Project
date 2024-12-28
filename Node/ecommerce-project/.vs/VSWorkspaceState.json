@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\models",
+    "\\frontend",
+    "\\frontend\\ecommerce-frontend",
+    "\\frontend\\ecommerce-frontend\\src",
+    "\\frontend\\ecommerce-frontend\\src\\app",
+    "\\frontend\\ecommerce-frontend\\src\\app\\main-page"
+  ],
+  "SelectedNode": "\\frontend\\ecommerce-frontend\\src\\app\\main-page\\main-page.component.ts",
+  "PreviewInSolutionExplorer": false
+}
