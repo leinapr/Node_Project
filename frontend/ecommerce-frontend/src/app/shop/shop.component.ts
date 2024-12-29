@@ -5,21 +5,20 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.scss',
   imports: [CommonModule, RouterModule],
   standalone: true,
 })
 export class ShopComponent implements OnInit {
-  products: any[] = []; // All fetched products
-  displayedProducts: any[] = []; // Products currently displayed
-  pageSize = 100; // Maximum number of products to display
-  container!: HTMLElement; // Container for product items
+  products: any[] = []; 
+  displayedProducts: any[] = []; 
+  pageSize = 100; 
+  container!: HTMLElement; 
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) { }
 
   async ngOnInit(): Promise<void> {
     this.container = this.elRef.nativeElement.querySelector('.product-list');
-    await this.fetchProducts(); // Fetch and initialize products
+    await this.fetchProducts();
   }
 
   async fetchProducts(): Promise<void> {
@@ -32,21 +31,20 @@ export class ShopComponent implements OnInit {
 
       const data = await response.json();
       this.products = Array.isArray(data.products) ? data.products : [];
-      this.updateDisplayedProducts(); // Initialize the displayed products
+      this.updateDisplayedProducts(); 
     } catch (error) {
       console.error('Failed to fetch products:', error);
     }
   }
 
   updateDisplayedProducts(): void {
-    // Show only the first 20 products in the UI
     this.displayedProducts = this.products.slice(0, this.pageSize);
     this.clearContainer();
     this.displayProducts(this.displayedProducts);
   }
 
   updateProductsDisplay(): void {
-    // Filter and sort the products, then limit the displayed items
+    // Filter and sort the products
     this.clearContainer();
 
     const query = (document.getElementById('search-input') as HTMLInputElement).value.toLowerCase();
@@ -59,7 +57,6 @@ export class ShopComponent implements OnInit {
     let filteredProducts = this.filterProducts(query, criteria, genre, category, type);
     filteredProducts = this.sortProducts(filteredProducts, sortBy);
 
-    // Update the displayed products with the filtered/sorted list, limited to `pageSize`
     this.displayedProducts = filteredProducts.slice(0, this.pageSize);
     this.displayProducts(this.displayedProducts); // Re-render filtered products
   }
@@ -82,17 +79,17 @@ export class ShopComponent implements OnInit {
         isMatch = product.authors?.some((author: string) => author.toLowerCase().includes(query));
       }
 
-      // Genre filter (Action, Adventure, etc.)
+      // Genre filter
       if (genre && genre !== 'all') {
         isMatch = isMatch && product.genres?.some((g: string) => g.toLowerCase() === genre.toLowerCase());
       }
 
-      // Category filter (Seinen, Shounen, etc.)
+      // Category filter 
       if (category && category !== 'all') {
         isMatch = isMatch && product.demographics?.some((d: string) => d.toLowerCase() === category.toLowerCase());
       }
 
-      // Type filter (e.g., manga, anime)
+      // Type filter 
       if (type && type !== 'all') {
         isMatch = isMatch && product.type.toLowerCase() === type.toLowerCase();
       }
@@ -119,7 +116,6 @@ export class ShopComponent implements OnInit {
   }
 
   displayProducts(products: any[]): void {
-    // Render the products in the container
     products.forEach(product => {
       const productItem = this.renderer.createElement('div');
       this.renderer.addClass(productItem, 'pro');
@@ -146,7 +142,6 @@ export class ShopComponent implements OnInit {
       const buttonText = this.renderer.createText('View Product');
       this.renderer.appendChild(viewProductButton, buttonText);
 
-      // Set Angular routing dynamically
       this.renderer.listen(viewProductButton, 'click', () => {
         window.location.href = `/sproduct?id=${product.id}`;
       });

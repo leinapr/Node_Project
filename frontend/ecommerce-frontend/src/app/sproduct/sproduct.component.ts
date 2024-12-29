@@ -32,7 +32,7 @@ export class SproductComponent implements OnInit {
 
       const productData = await response.json();
 
-      // Parse price as a float
+      
       if (productData.price) {
         productData.price = parseFloat(productData.price);
       }

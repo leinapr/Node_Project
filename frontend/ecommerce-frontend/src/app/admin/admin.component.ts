@@ -7,7 +7,7 @@ import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-mod
 import { GridApi, GridReadyEvent, ColDef } from 'ag-grid-community';
 import { BehaviorSubject } from 'rxjs';
 
-// Register required modules
+
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 export interface ProductModel {
@@ -127,8 +127,6 @@ export class AdminComponent implements OnInit {
       console.error('Grid API not initialized.');
     }
   }
-
-  // REMOVE ADD FUNCTIONALITY
 
   // UPDATE
   updateProduct(): void {
