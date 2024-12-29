@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-sproduct',
   templateUrl: './sproduct.component.html',
   styleUrls: ['./sproduct.component.scss'],
+  standalone: true,
   imports: [RouterModule, CommonModule]
 })
 export class SproductComponent implements OnInit {
