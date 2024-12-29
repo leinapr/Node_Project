@@ -35,7 +35,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 - **Search Functionality**: Quickly find manga by name or author.
 - **Filtering and Sorting**: Filter by genre, demographics, and type; sort by name, price, or score.
 - **Secure Backend**: Node.js API with PostreSQL database integration.
-- **Product Management**: Update, delete, and list products via the admin page.
+- **Product Management**: Update, delete, list, and download (in a csv file) products via the admin page.
 - **Swagger API Documentation**: Explore and test API endpoints via [Swagger UI](http://localhost:3000/api-docs).
 
 ---
@@ -139,6 +139,7 @@ The Admin Page enables CRUD operations on the product database through AG Grid. 
 - **View Products**: Display the products in a table.
 - **Edit Existing Products**: Modify product details inline or in a popup editor.
 - **Delete Products**: Remove products from the database.
+- **Export Products in a csv file**: Click on a button to download a csv file containing the products.
 
 ### Shop Page 
 * **Browsing products**: Browse through the list of manga titles. By default, the top 100 products are displayed.
