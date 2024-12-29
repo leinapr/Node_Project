@@ -8,4 +8,6 @@ import { MainPageComponent } from './main-page/main-page.component'; // Import M
   standalone: true, // This marks the component as standalone
   imports: [MainPageComponent], // Add MainPageComponent to imports
 })
-export class AppComponent { }
+export class AppComponent {
+  title = 'ecommerce-frontend';
+}
