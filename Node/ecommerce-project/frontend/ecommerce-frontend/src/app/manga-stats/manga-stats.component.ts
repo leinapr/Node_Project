@@ -137,5 +137,5 @@ export class MangaStatsComponent implements OnInit {
     console.log(`Calculated ${attribute} map:`, averages);
     return averages;
   }
-
 }
+
