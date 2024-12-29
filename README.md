@@ -1,12 +1,12 @@
-# Node Project
+# Node project
 
 ![Manga Shop Logo](assets/logo.png)
 
-Welcome to our Manga Shop Website. This project is a fully responsive e-commerce platform for manga enthusiasts, featuring advanced filtering, sorting, and browsing capabilities for a wide variety of manga titles.
+Welcome to our **E-Ragana website**, a manga shop website. This project is a fully responsive e-commerce platform for manga enthusiasts, featuring advanced filtering, sorting, and browsing capabilities for a wide variety of manga titles.
 
 ---
 
-## Table of Contents
+## Table of contents
 
 - [Project Description](#project-description)
 - [Features](#features)
@@ -19,11 +19,11 @@ Welcome to our Manga Shop Website. This project is a fully responsive e-commerce
 
 ---
 
-## Project Description
+## Project description
 
-The **Manga Shop Web Application** is a modern and dynamic e-commerce platform designed to provide manga enthusiasts with an intuitive and engaging shopping experience. Users can browse, search, and filter manga titles by genre, demographics, type, and price while viewing detailed product pages.
+The **E-Ragana website** is a modern and dynamic e-commerce platform designed to provide manga enthusiasts with an intuitive and engaging shopping experience. Users can browse, search, and filter manga titles by genre, demographics, type, and price while viewing detailed product pages.
 
-This project was built using **Angular** for the frontend, with **Node.js** and **Express** for the backend API. Data is stored in a **MySQL** database.
+This project was built using **Angular** for the frontend, with **Node.js** and **Express** for the backend API. Data is stored in a **PostgreSQL** database.
 
 ---
 
@@ -79,13 +79,13 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 ### Steps
 
-1. **Clone the Repository**:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/leinapr/Node_Project.git
    cd Node_Project
    ```
 
-2. **Setup Backend**:
+2. **Setup backend**:
    ```bash
    cd backend
    npm install
@@ -108,7 +108,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
      node server.js
      ```
 
-3. **Setup Frontend**:
+3. **Setup frontend**:
    ```bash
    cd frontend/ecommerce-frontend
    npm install
@@ -119,46 +119,38 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 ---
 
-## Usage Guide
+## Usage guide
 
-### Browsing Products
-1. Navigate to the **Shop** page.
-2. Browse through the list of manga titles. By default, the top 100 products are displayed.
+### Shop Page 
+* **Browsing products**: Browse through the list of manga titles. By default, the top 100 products are displayed.
+* **Filtering products**: Use the dropdowns to filter by:
+    * Genre: Action, Adventure, Drama, etc.
+    * Demographics: Shonen, Seinen, Shojo, etc.
+    * Type: Manga, Light Novel, etc.
+    * Price Range.
+* **Sorting products**: Sort the products by Name, Price, or Rating.
 
-### Filtering and Sorting
-1. Use the dropdowns to filter by:
-   - **Genre**: Action, Adventure, Drama, etc.
-   - **Demographics**: Shonen, Seinen, Shojo, etc.
-   - **Type**: Manga, Light Novel, etc.
-   - **Price Range**.
-2. Sort the products by Name, Price, or Rating.
-
-### Viewing Product Details
-1. Click on any product to view its detailed information.
-2. Product details include the title, price, genre, demographics, type, and rating.
-
-### Adding Products to the Cart
-1. Click on the button 'Add to Cart' to add a product to the cart.
-2. Click on the button 'Buy Now' to purchase the product directly. This will redirect you to the 'Cart' page.
+### Product Page
+* **Viewing product details**: Click on any product to view its detailed information. Product details include the title, price, genre, demographics, type, and rating.
+* **Adding Products to the Cart**: Click on the button 'Add to Cart' to add a product to the cart or click on 'Buy Now' to purchase the product directly. This will redirect you to the 'Cart' page.
 
 ### Contact Page
-1. Enter your name.
-2. Enter your email address.
-3. Write your message.
-4. We will reply you as soon as possible.
+* Enter your name.
+* Enter your email address.
+* Write your message.
+* We will reply to you as soon as possible.
 
 ### About Page
-1. Navigate to this page to know more about us.
+* Navigate to this page to know more about us.
 
 ### Cart Page
 The Cart Page provides essential e-commerce functionalities for managing selected products before checkout. Key features include:
+* Add Products: Items added from the shop are displayed in the cart for review.
+* Remove Products: Users can remove unwanted items from the cart.
+* Update Quantities: Adjust the quantity of each product directly within the cart.
+* Apply Promo Codes: Users can enter a valid promotional code to receive discounts on their total purchase.
+* Cart Summary: Displays a detailed breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
 
-1. Add Products: Items added from the shop are displayed in the cart for review.
-2. Remove Products: Users can remove unwanted items from the cart.
-3. Update Quantities: Adjust the quantity of each product directly within the cart.
-4. Apply Promo Codes: Users can enter a valid promotional code to receive discounts on their total purchase.
-5. Cart Summary: Displays a detailed breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
-    
 ---
 
 ## Technologies Used
