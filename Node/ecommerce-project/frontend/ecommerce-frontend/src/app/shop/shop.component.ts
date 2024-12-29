@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.scss'],
   imports: [CommonModule, RouterModule],
   standalone: true,
 })
