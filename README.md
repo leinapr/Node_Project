@@ -67,7 +67,8 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/fb8548a5-a3dd-458c-b205-6c7fc0d44ff5" />
 
 ### Admin Page (CRUD with AG Grid)
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/a9785d64-24d5-4e16-a38b-87360e52c6ee" />
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/ccdccce0-9848-41c7-8512-4f7d731ccee4" />
+
 
 ---
 
