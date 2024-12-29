@@ -1,10 +1,12 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
-  standalone: true, // Mark this component as standalone
+  standalone: true,
+  imports: [RouterModule], // Import RouterModule here
 })
 export class MainPageComponent implements OnInit {
   products: any[] = [];
@@ -30,7 +32,7 @@ export class MainPageComponent implements OnInit {
       }
 
       const products = await response.json();
-      this.products = this.getTopProducts(products);
+      this.products = this.getTopProducts(products.products || []); // Access the nested "products" array
       this.displayTopProducts(productTop, this.products);
     } catch (error) {
       console.error('Failed to fetch products:', error);
@@ -60,14 +62,41 @@ export class MainPageComponent implements OnInit {
       const productItem = this.renderer.createElement('div');
       this.renderer.addClass(productItem, 'pro');
 
-      const productHTML = `
-        <h3>${product.name}</h3>
-        <p>$${parseFloat(product.price).toFixed(2)}</p>
-        <p>Score: ${product.score || 'not scored yet'}</p>
-        <img src="${product.image}" alt="${product.name}" class="product-image" />
-        <a href="sproduct.html?id=${product.id}" class="btn">View Product</a>
-      `;
-      productItem.innerHTML = productHTML; // Safely add HTML content
+      const productName = this.renderer.createElement('h3');
+      const nameText = this.renderer.createText(product.name);
+      this.renderer.appendChild(productName, nameText);
+
+      const productPrice = this.renderer.createElement('p');
+      const priceText = this.renderer.createText(`$${parseFloat(product.price).toFixed(2)}`);
+      this.renderer.appendChild(productPrice, priceText);
+
+      const productScore = this.renderer.createElement('p');
+      const scoreText = this.renderer.createText(`Score: ${product.score || 'not scored yet'}`);
+      this.renderer.appendChild(productScore, scoreText);
+
+      const productImage = this.renderer.createElement('img');
+      this.renderer.setAttribute(productImage, 'src', product.image);
+      this.renderer.setAttribute(productImage, 'alt', product.name);
+      this.renderer.addClass(productImage, 'product-image');
+
+      const viewProductButton = this.renderer.createElement('a');
+      this.renderer.addClass(viewProductButton, 'btn');
+      const buttonText = this.renderer.createText('View Product');
+      this.renderer.appendChild(viewProductButton, buttonText);
+
+      // Set Angular routing dynamically
+      this.renderer.listen(viewProductButton, 'click', () => {
+        window.location.href = `/sproduct?id=${product.id}`;
+      });
+
+      // Append all elements to the product item
+      this.renderer.appendChild(productItem, productName);
+      this.renderer.appendChild(productItem, productPrice);
+      this.renderer.appendChild(productItem, productScore);
+      this.renderer.appendChild(productItem, productImage);
+      this.renderer.appendChild(productItem, viewProductButton);
+
+      // Add product item to the container
       this.renderer.appendChild(container, productItem);
     });
   }

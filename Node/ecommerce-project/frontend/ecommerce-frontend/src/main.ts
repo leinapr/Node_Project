@@ -1,6 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)],
+}).catch(err => console.error(err));

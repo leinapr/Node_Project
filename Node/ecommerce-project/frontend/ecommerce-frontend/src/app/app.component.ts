@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { MainPageComponent } from './main-page/main-page.component'; // Import MainPageComponent
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true, // This marks the component as standalone
-  imports: [MainPageComponent], // Add MainPageComponent to imports
+  standalone: true,
+  imports: [RouterModule], // Import RouterModule
 })
-export class AppComponent {
-  title = 'ecommerce-frontend';
-}
+export class AppComponent { }
