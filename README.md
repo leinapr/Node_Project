@@ -44,7 +44,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 <img width="1469" alt="image" src="https://github.com/user-attachments/assets/d31750f8-35a3-413b-93fc-b98e69b84d0c" />
 
 ### Shop Page (Product List)
-<img width="1469" alt="image" src="https://github.com/user-attachments/assets/4c6effcc-138c-4442-ac27-04094f1d9d2f" />
+<img width="1920" alt="image" src="https://github.com/user-attachments/assets/bcad6603-f533-4c0a-ba55-5f9980faf140" />
 
 ### Shop Page (Product Filters)
 ![Product Filters](assets/screenshots/filters.png)
