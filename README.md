@@ -50,7 +50,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ![Product Filters](assets/screenshots/filters.png)
 
 ### Product Page
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/57885683-63e8-40e7-9c15-da012e00feaa" />
+<img width="1919" alt="image" src="https://github.com/user-attachments/assets/1e0e0d9a-1b39-48ad-a905-9b814f26dbaf" />
 
 ### Product Stats (Genre, Demographics,Types) 
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/b3f5d26b-1f70-4a33-bbff-936766af9bc1" />
