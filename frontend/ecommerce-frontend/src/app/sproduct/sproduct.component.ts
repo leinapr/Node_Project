@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-sproduct',
   templateUrl: './sproduct.component.html',
   styleUrls: ['./sproduct.component.scss'],
-  standalone: true,
   imports: [RouterModule, CommonModule]
 })
 export class SproductComponent implements OnInit {
@@ -26,7 +25,7 @@ export class SproductComponent implements OnInit {
 
   async fetchProduct(productId: string): Promise<void> {
     try {
-      const response = await fetch(`http://localhost:3030/api/product/${productId}`);
+      const response = await fetch(`http://localhost:3000/api/product/${productId}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch product: ${response.status}`);
       }

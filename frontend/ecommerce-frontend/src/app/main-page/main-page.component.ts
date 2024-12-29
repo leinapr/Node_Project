@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
     }
 
     try {
-      const response = await fetch('http://localhost:3030/products');
+      const response = await fetch('http://localhost:3000/products');
       if (!response.ok) {
         throw new Error(`Failed to fetch products: ${response.status}`);
       }

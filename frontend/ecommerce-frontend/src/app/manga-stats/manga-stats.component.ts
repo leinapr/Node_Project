@@ -19,7 +19,7 @@ export class MangaStatsComponent implements OnInit {
   isLoading = false;
   hasMoreProducts = true;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.fetchMangaData();

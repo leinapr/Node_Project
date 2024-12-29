@@ -21,9 +21,12 @@
                      [rowData]="rows$.value"
                      [columnDefs]="colDefs"
                      [rowModelType]="'clientSide'"
+                     rowSelection="multiple"
                      (gridReady)="onGridReady($event)">
     </ag-grid-angular>
     <button (click)="onBtExport()">Export CSV</button>
+    <button (click)="updateProduct()">Update Selected Product</button>
+    <button (click)="deleteSelectedProduct()">Delete Selected Product</button>
   </div>
 </div>
 <ng-template #noBrowser>

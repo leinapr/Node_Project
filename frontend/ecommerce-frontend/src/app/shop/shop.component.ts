@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.scss'],
   imports: [CommonModule, RouterModule],
   standalone: true,
 })
@@ -25,7 +24,7 @@ export class ShopComponent implements OnInit {
   async fetchProducts(): Promise<void> {
     try {
       // Fetch all products from the backend
-      const response = await fetch('http://localhost:3030/products');
+      const response = await fetch('http://localhost:3000/products');
       if (!response.ok) {
         throw new Error(`Failed to fetch products: ${response.status}`);
       }
@@ -68,17 +67,34 @@ export class ShopComponent implements OnInit {
     return this.products.filter(product => {
       let isMatch = true;
 
+      // Text search based on criteria
       if (criteria === 'all') {
-        isMatch = product.name.toLowerCase().includes(query);
+        isMatch = (
+          product.name.toLowerCase().includes(query) ||
+          (product.authors && product.authors.some((author: string) => author.toLowerCase().includes(query))) ||
+          (product.genres && product.genres.some((g: string) => g.toLowerCase().includes(query))) ||
+          product.price.toString().includes(query)
+        );
       } else if (criteria === 'name') {
         isMatch = product.name.toLowerCase().includes(query);
       } else if (criteria === 'author') {
         isMatch = product.authors?.some((author: string) => author.toLowerCase().includes(query));
       }
 
-      if (genre !== 'all') isMatch = isMatch && product.genres?.includes(genre);
-      if (category !== 'all') isMatch = isMatch && product.category === category;
-      if (type !== 'all') isMatch = isMatch && product.type === type;
+      // Genre filter (Action, Adventure, etc.)
+      if (genre && genre !== 'all') {
+        isMatch = isMatch && product.genres?.some((g: string) => g.toLowerCase() === genre.toLowerCase());
+      }
+
+      // Category filter (Seinen, Shounen, etc.)
+      if (category && category !== 'all') {
+        isMatch = isMatch && product.demographics?.some((d: string) => d.toLowerCase() === category.toLowerCase());
+      }
+
+      // Type filter (e.g., manga, anime)
+      if (type && type !== 'all') {
+        isMatch = isMatch && product.type.toLowerCase() === type.toLowerCase();
+      }
 
       return isMatch;
     });
@@ -90,11 +106,11 @@ export class ShopComponent implements OnInit {
         case 'name':
           return a.name.localeCompare(b.name);
         case 'price-asc':
-          return a.price - b.price;
+          return parseFloat(a.price) - parseFloat(b.price);
         case 'price-desc':
-          return b.price - a.price;
+          return parseFloat(b.price) - parseFloat(a.price);
         case 'score':
-          return (b.score || 0) - (a.score || 0);
+          return parseFloat(b.score || 0) - parseFloat(a.score || 0);
         default:
           return 0;
       }

@@ -3,7 +3,7 @@ import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModuleRegistry } from '@ag-grid-community/core';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model'; // Import the module
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import { GridApi, GridReadyEvent, ColDef } from 'ag-grid-community';
 import { BehaviorSubject } from 'rxjs';
 
@@ -37,21 +37,25 @@ export class AdminComponent implements OnInit {
   private gridApi!: GridApi<ProductModel>;
   isBrowser: boolean;
 
-  rows$ = new BehaviorSubject<ProductModel[]>([]); // Reactive Data
-
+  rows$ = new BehaviorSubject<ProductModel[]>([]);
   colDefs: ColDef<ProductModel>[] = [
-    { headerName: 'Id', field: 'id', sortable: true, filter: 'agNumberColumnFilter', width: 100 },
-    { headerName: 'Name', field: 'name', sortable: true, filter: true, width: 200 },
-    { headerName: 'Type', field: 'type', sortable: true, filter: true, width: 150 },
-    { headerName: 'Score', field: 'score', sortable: true, filter: 'agNumberColumnFilter', width: 100 },
-    { headerName: 'Status', field: 'status', sortable: true, filter: true, width: 150 },
-    { headerName: 'Volumes', field: 'volumes', sortable: true, filter: 'agNumberColumnFilter', width: 120 },
+    { headerName: 'Id', field: 'id', sortable: true, filter: 'agNumberColumnFilter', width: 100, editable: false },
+    { headerName: 'Name', field: 'name', sortable: true, filter: true, width: 200, editable: true },
+    { headerName: 'Type', field: 'type', sortable: true, filter: true, width: 150, editable: true },
+    { headerName: 'Score', field: 'score', sortable: true, filter: 'agNumberColumnFilter', width: 100, editable: true },
+    { headerName: 'Status', field: 'status', sortable: true, filter: true, width: 150, editable: true },
+    { headerName: 'Volumes', field: 'volumes', sortable: true, filter: 'agNumberColumnFilter', width: 120, editable: true },
     {
       headerName: 'Genres',
       valueGetter: (params) => params.data?.genres?.join(', ') || 'N/A',
       sortable: true,
       filter: true,
       width: 200,
+      editable: true,
+      valueSetter: (params) => {
+        params.data.genres = params.newValue.split(',').map((item: string) => item.trim());
+        return true;
+      },
     },
     {
       headerName: 'Demographics',
@@ -59,6 +63,11 @@ export class AdminComponent implements OnInit {
       sortable: true,
       filter: true,
       width: 200,
+      editable: true,
+      valueSetter: (params) => {
+        params.data.demographics = params.newValue.split(',').map((item: string) => item.trim());
+        return true;
+      },
     },
     {
       headerName: 'Authors',
@@ -66,9 +75,14 @@ export class AdminComponent implements OnInit {
       sortable: true,
       filter: true,
       width: 200,
+      editable: true,
+      valueSetter: (params) => {
+        params.data.authors = params.newValue.split(',').map((item: string) => item.trim());
+        return true;
+      },
     },
-    { headerName: 'Description', field: 'description', sortable: false, filter: false, width: 300 },
-    { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter', width: 100 },
+    { headerName: 'Description', field: 'description', sortable: false, filter: false, width: 300, editable: true },
+    { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter', width: 100, editable: true },
   ];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -85,14 +99,6 @@ export class AdminComponent implements OnInit {
     this.gridApi = params.api;
   }
 
-  onBtExport(): void {
-    if (this.gridApi) {
-      this.gridApi.exportDataAsCsv(); // Ensure gridApi is initialized
-    } else {
-      console.error('Grid API not initialized.');
-    }
-  }
-
   loadGridData(): void {
     fetch('http://localhost:3000/products')
       .then((response) => {
@@ -102,19 +108,57 @@ export class AdminComponent implements OnInit {
         return response.json();
       })
       .then((data) => {
-        console.log('API Response:', data); // Log the response to see its structure
-        if (Array.isArray(data)) {
-          this.rows$.next(data); // If the response is an array, use it directly
-        } else if (Array.isArray(data.products)) {
-          this.rows$.next(data.products); // If the array is nested, extract it
+        if (Array.isArray(data.products)) {
+          this.rows$.next(data.products);
         } else {
-          console.error('Invalid data format:', data);
           this.rows$.next([]);
         }
       })
       .catch((error) => {
         console.error('Failed to load products:', error);
-        this.rows$.next([]); // Handle the error gracefully by clearing the grid
+        this.rows$.next([]);
       });
+  }
+
+  onBtExport(): void {
+    if (this.gridApi) {
+      this.gridApi.exportDataAsCsv();
+    } else {
+      console.error('Grid API not initialized.');
+    }
+  }
+
+  // REMOVE ADD FUNCTIONALITY
+
+  // UPDATE
+  updateProduct(): void {
+    if (this.gridApi) {
+      const updatedData = this.gridApi.getSelectedRows();
+      updatedData.forEach((product) => {
+        fetch(`http://localhost:3000/products/${product.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(product),
+        })
+          .then((response) => response.json())
+          .catch((error) => console.error('Failed to update product:', error));
+      });
+    }
+  }
+
+  // DELETE
+  deleteSelectedProduct(): void {
+    if (this.gridApi) {
+      const selectedData = this.gridApi.getSelectedRows();
+      selectedData.forEach((product) => {
+        fetch(`http://localhost:3000/products/${product.id}`, {
+          method: 'DELETE',
+        })
+          .then(() => {
+            this.rows$.next(this.rows$.value.filter((item) => item.id !== product.id));
+          })
+          .catch((error) => console.error('Failed to delete product:', error));
+      });
+    }
   }
 }

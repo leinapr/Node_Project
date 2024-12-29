@@ -3,18 +3,18 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ShopComponent } from './shop/shop.component';
-import { MangaStatsComponent } from './manga-stats/manga-stats.component';
 import { CartComponent } from './cart/cart.component';
 import { SproductComponent } from './sproduct/sproduct.component';
 import { AdminComponent } from './admin/admin.component';
+import { MangaStatsComponent } from './manga-stats/manga-stats.component';
 
 export const routes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'about', component: AboutComponent },
   { path: 'shop', component: ShopComponent },
-  { path: 'stats', component: MangaStatsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent },
   { path: 'sproduct', component: SproductComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'stats', component: MangaStatsComponent },
 ];
