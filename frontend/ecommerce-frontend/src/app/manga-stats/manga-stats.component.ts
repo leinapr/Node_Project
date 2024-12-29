@@ -15,9 +15,7 @@ export class MangaStatsComponent implements OnInit {
   typeChartOptions: any;
   mangaData: any[] = [];
   pageSize = 50;
-  currentOffset = 0;
   isLoading = false;
-  hasMoreProducts = true;
 
   constructor() { }
 
@@ -29,31 +27,17 @@ export class MangaStatsComponent implements OnInit {
     this.isLoading = true;
 
     try {
-      let hasMore = true;
-      let offset = 0;
-
-      while (hasMore) {
-        const response = await fetch(`http://localhost:3000/products?offset=${offset}&limit=${this.pageSize}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch products: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const newProducts = Array.isArray(data.products) ? data.products : [];
-        console.log('Fetched products batch:', newProducts);
-
-        if (newProducts.length === 0) {
-          hasMore = false;
-        } else {
-          this.mangaData.push(...newProducts);
-          offset += this.pageSize;
-        }
+      const response = await fetch('http://localhost:3000/products');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch products: ${response.status}`);
       }
 
-      console.log('All products fetched:', this.mangaData);
+      const data = await response.json();
+      this.mangaData = Array.isArray(data.products) ? data.products : [];
+      console.log('Fetched manga data:', this.mangaData);
       this.updateCharts();
     } catch (error) {
-      console.error('Failed to fetch all products:', error);
+      console.error('Error fetching all products:', error);
     } finally {
       this.isLoading = false;
     }
@@ -69,7 +53,7 @@ export class MangaStatsComponent implements OnInit {
     this.categoryChartOptions = this.generateChartOptions(
       'Manga Demographics Popularity (Based on Score)',
       'Demographics',
-      this.groupByAttribute(this.mangaData, 'demographics') // Mise à jour ici
+      this.groupByAttribute(this.mangaData, 'demographics') 
     );
 
     this.typeChartOptions = this.generateChartOptions(
@@ -78,10 +62,10 @@ export class MangaStatsComponent implements OnInit {
       this.groupByAttribute(this.mangaData, 'type')
     );
 
-    // Afficher les graphiques
-    Highcharts.chart('genre-chart-container', this.genreChartOptions);
-    Highcharts.chart('category-chart-container', this.categoryChartOptions);
-    Highcharts.chart('type-chart-container', this.typeChartOptions);
+    // Render charts if containers exist
+    this.renderChart('genre-chart-container', this.genreChartOptions);
+    this.renderChart('category-chart-container', this.categoryChartOptions);
+    this.renderChart('type-chart-container', this.typeChartOptions);
   }
 
   generateChartOptions(title: string, xAxisTitle: string, data: { [key: string]: number }): Highcharts.Options {
@@ -131,10 +115,19 @@ export class MangaStatsComponent implements OnInit {
     const averages: { [key: string]: number } = {};
     Object.keys(map).forEach(key => {
       const { totalScore, count } = map[key];
-      averages[key] = count > 0 ? totalScore / count : 0; // Inclure même avec une moyenne de 0
+      averages[key] = count > 0 ? totalScore / count : 0;
     });
 
     console.log(`Calculated ${attribute} map:`, averages);
     return averages;
+  }
+
+  renderChart(containerId: string, chartOptions: Highcharts.Options): void {
+    const container = document.getElementById(containerId);
+    if (container) {
+      Highcharts.chart(containerId, chartOptions);
+    } else {
+      console.error(`Chart container with ID "${containerId}" not found.`);
+    }
   }
 }
