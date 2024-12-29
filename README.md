@@ -1,6 +1,6 @@
 # Node project
 
-![Manga Shop Logo](assets/logo.png)
+![image](https://github.com/user-attachments/assets/d750702a-bec1-4ee1-a049-0c23268e246a)
 
 Welcome to our **E-Ragana website**, a manga shop website. This project is a fully responsive e-commerce platform for manga enthusiasts, featuring advanced filtering, sorting, and browsing capabilities for a wide variety of manga titles.
 
