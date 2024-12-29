@@ -150,6 +150,7 @@ The Cart Page provides essential e-commerce functionalities for managing selecte
 * **Update Quantities**: Adjust the quantity of each product directly within the cart.
 * **Apply Promo Code (DISCOUNT10)**: Users can enter a valid promotional code to receive discounts on their total purchase.
 * **Cart Summary**: Displays a breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
+  
 For more information, see the E_ragana users guide video.
 
 ---
