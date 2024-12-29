@@ -117,6 +117,14 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
    ```bash
    cd Node_Project/frontend/ecommerce-frontend
    npm install
+   ```
+   - Install highcharts
+   ```bash
+   npm install highcharts
+   npm install --save-dev @types/highcharts
+   ```
+   - Start the frontend server:   
+   ```bash
    ng serve
    ```
 
