@@ -138,4 +138,3 @@ export class MangaStatsComponent implements OnInit {
     return averages;
   }
 }
-
