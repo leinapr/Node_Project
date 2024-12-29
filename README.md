@@ -126,9 +126,9 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 * **Filtering products**: Use the dropdowns to filter by:
     * Genre: Action, Adventure, Drama, etc.
     * Demographics: Shonen, Seinen, Shojo, etc.
-    * Type: Manga, Light Novel, etc.
+    * Type: Manga, Novel, Light Novel, etc.
     * Price Range.
-* **Sorting products**: Sort the products by Name, Price, or Rating.
+* **Sorting products**: Sort the products by Name, Price, or Score.
 
 ### Product Page
 * **Viewing product details**: Click on any product to view its detailed information. Product details include the title, price, genre, demographics, type, and rating.
@@ -145,11 +145,11 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 ### Cart Page
 The Cart Page provides essential e-commerce functionalities for managing selected products before checkout. Key features include:
-* Add Products: Items added from the shop are displayed in the cart for review.
-* Remove Products: Users can remove unwanted items from the cart.
-* Update Quantities: Adjust the quantity of each product directly within the cart.
-* Apply Promo Codes: Users can enter a valid promotional code to receive discounts on their total purchase.
-* Cart Summary: Displays a detailed breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
+* **Add Products**: Items added from the shop are displayed in the cart for review.
+* **Remove Products**: Users can remove unwanted items from the cart.
+* **Update Quantities**: Adjust the quantity of each product directly within the cart.
+* **Apply Promo Code (DISCOUNT10)**: Users can enter a valid promotional code to receive discounts on their total purchase.
+* **Cart Summary**: Displays a breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
 
 ---
 
