@@ -75,7 +75,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 - [Node.js](https://nodejs.org/) (v14+)
 - [Angular CLI](https://angular.io/cli)
-- [MySQL](https://www.mysql.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ### Steps
 
