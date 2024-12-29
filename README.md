@@ -54,7 +54,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ### Product Page
 <img width="1919" alt="image" src="https://github.com/user-attachments/assets/1e0e0d9a-1b39-48ad-a905-9b814f26dbaf" />
 
-### Product Stats (Genre, Demographics, Types) 
+### Product Stats with Highcharts (Genre, Demographics, Types) 
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/b3f5d26b-1f70-4a33-bbff-936766af9bc1" />
 
 ### About Page
