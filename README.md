@@ -35,6 +35,8 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 - **Search Functionality**: Quickly find manga by name or author.
 - **Filtering and Sorting**: Filter by genre, demographics, and type; sort by name, price, or score.
 - **Secure Backend**: Node.js API with PostreSQL database integration.
+- **Product Management**: Update, delete, and list products via the admin page.
+- **Swagger API Documentation**: Explore and test API endpoints via [Swagger UI](http://localhost:3000/api-docs).
 
 ---
 
@@ -64,7 +66,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ### Cart Page
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/fb8548a5-a3dd-458c-b205-6c7fc0d44ff5" />
 
-### Admin Page
+### Admin Page (CRUD with AG Grid)
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/a9785d64-24d5-4e16-a38b-87360e52c6ee" />
 
 ---
@@ -121,6 +123,12 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 ## Usage guide
 
+### Admin Page
+The Admin Page enables CRUD operations on the product database through AG Grid. Key features include:
+- **View Products**: Display the list of products in a tabular format.
+- **Edit Existing Products**: Modify existing product details inline or via a popup editor.
+- **Delete Products**: Remove unwanted products from the database.
+
 ### Shop Page 
 * **Browsing products**: Browse through the list of manga titles. By default, the top 100 products are displayed.
 * **Filtering products**: Use the dropdowns to filter by:
@@ -152,6 +160,22 @@ The Cart Page provides essential e-commerce functionalities for managing selecte
 * **Cart Summary**: Displays a breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
   
 For more information, download and watch the E_ragana users guide video available on the repository.
+
+---
+
+## API Documentation
+
+### CRUD Endpoints
+
+- **GET `/products`**: Fetch all products.
+- **GET `/api/product/:id`**: Fetch a specific product by ID.
+- **POST `/products`**: Add a new product.
+- **PUT `/products/:id`**: Update an existing product.
+- **DELETE `/products/:id`**: Remove a product.
+
+We can test these endpoints using [Swagger UI](http://localhost:3000/api-docs) :
+- **Endpoint Descriptions**: Detailed descriptions of available endpoints.
+- **Testing Interface**: Directly test API calls from the Swagger UI.
 
 ---
 
