@@ -25,7 +25,7 @@ export class ShopComponent implements OnInit {
   async fetchProducts(): Promise<void> {
     try {
       // Fetch all products from the backend
-      const response = await fetch('http://localhost:3030/products');
+      const response = await fetch('http://localhost:3002/products');
       if (!response.ok) {
         throw new Error(`Failed to fetch products: ${response.status}`);
       }

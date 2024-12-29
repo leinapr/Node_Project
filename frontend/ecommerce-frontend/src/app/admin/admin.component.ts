@@ -138,7 +138,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadGridData(): void {
-    fetch('http://localhost:3030/products')
+    fetch('http://localhost:3002/products')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

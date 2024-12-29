@@ -7,7 +7,6 @@ import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-mod
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
-
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(routes)],
 }).catch(err => console.error(err));

@@ -26,7 +26,7 @@ export class SproductComponent implements OnInit {
 
   async fetchProduct(productId: string): Promise<void> {
     try {
-      const response = await fetch(`http://localhost:3030/api/product/${productId}`);
+      const response = await fetch(`http://localhost:3002/api/product/${productId}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch product: ${response.status}`);
       }
