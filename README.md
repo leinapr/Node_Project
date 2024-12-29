@@ -119,14 +119,14 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
    npm install
    ```
    - Install highcharts
-   ```bash
-   npm install highcharts
-   npm install --save-dev @types/highcharts
-   ```
+     ```bash
+     npm install highcharts
+     npm install --save-dev @types/highcharts
+     ```
    - Start the frontend server:   
-   ```bash
-   ng serve
-   ```
+     ```bash
+     ng serve
+     ```
 
 4. Open the application in your browser at [http://localhost:4200](http://localhost:4200).
 
