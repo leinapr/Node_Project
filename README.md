@@ -138,10 +138,19 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 2. Product details include the title, price, genre, demographics, type, and rating.
 
 ### Adding Products to the Cart
-1. Click on the button 'Add to Cart' to add a product to the cart
+1. Click on the button 'Add to Cart' to add a product to the cart.
 2. Click on the button 'Buy Now' to purchase the product directly. This will redirect you to the 'Cart' page.
 
-### Viewing Cart Details
+### Contact Page
+1. Enter your name.
+2. Enter your email address.
+3. Write your message.
+4. We will reply you as soon as possible.
+
+### About Page
+1. Navigate to this page to know more about us.
+
+### Cart Page
 The Cart Page provides essential e-commerce functionalities for managing selected products before checkout. Key features include:
 
 1. Add Products: Items added from the shop are displayed in the cart for review.
