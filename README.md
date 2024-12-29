@@ -125,9 +125,9 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 ### Admin Page
 The Admin Page enables CRUD operations on the product database through AG Grid. Key features include:
-- **View Products**: Display the list of products in a tabular format.
-- **Edit Existing Products**: Modify existing product details inline or via a popup editor.
-- **Delete Products**: Remove unwanted products from the database.
+- **View Products**: Display the products in a table.
+- **Edit Existing Products**: Modify product details inline or in a popup editor.
+- **Delete Products**: Remove products from the database.
 
 ### Shop Page 
 * **Browsing products**: Browse through the list of manga titles. By default, the top 100 products are displayed.
@@ -173,9 +173,7 @@ For more information, download and watch the E_ragana users guide video availabl
 - **PUT `/products/:id`**: Update an existing product.
 - **DELETE `/products/:id`**: Remove a product.
 
-We can test these endpoints using [Swagger UI](http://localhost:3000/api-docs) :
-- **Endpoint Descriptions**: Detailed descriptions of available endpoints.
-- **Testing Interface**: Directly test API calls from the Swagger UI.
+We can test see these endpoints using [Swagger UI](http://localhost:3000/api-docs)
 
 ---
 
