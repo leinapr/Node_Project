@@ -13,16 +13,20 @@ app.use(express.json());
 // Static files (if needed for public assets like images)
 app.use(express.static(__dirname + '/public'));
 
-// Get all products
+// Get products
+// Get all products without pagination
 app.get('/products', async (req, res) => {
     try {
-        const products = await Product.findAll();
-        res.json(products); // Send the list of products as JSON
+        const products = await Product.findAll(); // Fetch all products without limit or offset
+        res.json({
+            products, // Send all products as a response
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error fetching products' });
     }
 });
+
 
 // Get a specific product by ID
 app.get('/api/product/:id', async (req, res) => {
