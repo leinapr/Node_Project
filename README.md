@@ -137,6 +137,19 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 1. Click on any product to view its detailed information.
 2. Product details include the title, price, genre, demographics, type, and rating.
 
+### Adding Products to the Cart
+1. Click on the button 'Add to Cart' to add a product to the cart
+2. Click on the button 'Buy Now' to purchase the product directly. This will redirect you to the 'Cart' page.
+
+### Viewing Cart Details
+The Cart Page provides essential e-commerce functionalities for managing selected products before checkout. Key features include:
+
+1. Add Products: Items added from the shop are displayed in the cart for review.
+2. Remove Products: Users can remove unwanted items from the cart.
+3. Update Quantities: Adjust the quantity of each product directly within the cart.
+4. Apply Promo Codes: Users can enter a valid promotional code to receive discounts on their total purchase.
+5. Cart Summary: Displays a detailed breakdown of the cart, including individual item prices, subtotal, discounts, and the final total.
+    
 ---
 
 ## Technologies Used
