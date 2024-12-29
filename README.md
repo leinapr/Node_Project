@@ -30,10 +30,10 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ## Features
 
 - **User-Friendly Interface**: Intuitive design with responsive layouts.
-- **Filtering and Sorting**: Filter by genre, demographics, and type; sort by name, price, or score.
 - **Dynamic Product Display**: Display the top 100 manga dynamically.
 - **Product Details**: Detailed product pages with images, pricing, and descriptions.
 - **Search Functionality**: Quickly find manga by name or author.
+- **Filtering and Sorting**: Filter by genre, demographics, and type; sort by name, price, or score.
 - **Secure Backend**: Node.js API with PostreSQL database integration.
 
 ---
