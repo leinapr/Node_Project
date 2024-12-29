@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 
 // Register required modules
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
 export interface ProductModel {
   id: number;
   name: string;
@@ -16,65 +17,21 @@ export interface ProductModel {
   score: string;
   status: string;
   volumes: number | null;
-  genres: string[]; // Array of genres
-  demographics: string[]; // Array of demographics
-  authors: string[]; // Array of authors
+  genres: string[];
+  demographics: string[];
+  authors: string[];
   description: string;
   price: string;
   image: string;
   url: string;
 }
 
-
 @Component({
   selector: 'app-admin',
   standalone: true,
   imports: [CommonModule, RouterModule, AgGridModule],
-  template: `
-    <div *ngIf="isBrowser; else noBrowser">
-      <section id="admin-header">
-        <a routerLink="/"><img src="assets/images/logo.jpg" class="logo" alt="Logo" /></a>
-        <div>
-          <ul id="navbar">
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/shop">Shop</a></li>
-            <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/contact">Contact</a></li>
-            <li><a routerLink="/cart"><i class="fas fa-cart-arrow-down"></i></a></li>
-            <li><a routerLink="/admin" class="active">Admin</a></li>
-          </ul>
-        </div>
-      </section>
-
-      <div class="admin-container">
-        <h1>Admin Page</h1>
-        <ag-grid-angular
-          class="ag-theme-quartz"
-          style="width: 100%; height: 600px;"
-          [rowData]="rows$.value"
-          [columnDefs]="colDefs"
-          [rowModelType]="'clientSide'"
-          (gridReady)="onGridReady($event)">
-        </ag-grid-angular>
-        <button (click)="onBtExport()">Export CSV</button>
-      </div>
-    </div>
-    <ng-template #noBrowser>
-      <p>Admin page is unavailable in server-side rendering.</p>
-    </ng-template>
-  `,
-  styles: [
-    `
-      .admin-container {
-        padding: 20px;
-      }
-      ag-grid-angular {
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-    `,
-  ],
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
   private gridApi!: GridApi<ProductModel>;
@@ -114,7 +71,6 @@ export class AdminComponent implements OnInit {
     { headerName: 'Price', field: 'price', sortable: true, filter: 'agNumberColumnFilter', width: 100 },
   ];
 
-
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -138,7 +94,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadGridData(): void {
-    fetch('http://localhost:3030/products')
+    fetch('http://localhost:3000/products')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -161,5 +117,4 @@ export class AdminComponent implements OnInit {
         this.rows$.next([]); // Handle the error gracefully by clearing the grid
       });
   }
-
 }
