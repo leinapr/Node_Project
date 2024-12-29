@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import * as Highcharts from 'highcharts';
 import { RouterLink } from '@angular/router';
 
@@ -17,7 +18,7 @@ export class MangaStatsComponent implements OnInit {
   pageSize = 50;
   isLoading = false;
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
     this.fetchMangaData();
@@ -53,7 +54,7 @@ export class MangaStatsComponent implements OnInit {
     this.categoryChartOptions = this.generateChartOptions(
       'Manga Demographics Popularity (Based on Score)',
       'Demographics',
-      this.groupByAttribute(this.mangaData, 'demographics') 
+      this.groupByAttribute(this.mangaData, 'demographics') // Use correct attribute
     );
 
     this.typeChartOptions = this.generateChartOptions(
@@ -62,7 +63,7 @@ export class MangaStatsComponent implements OnInit {
       this.groupByAttribute(this.mangaData, 'type')
     );
 
-    // Render charts if containers exist
+    // Render charts if on browser
     this.renderChart('genre-chart-container', this.genreChartOptions);
     this.renderChart('category-chart-container', this.categoryChartOptions);
     this.renderChart('type-chart-container', this.typeChartOptions);
@@ -123,11 +124,13 @@ export class MangaStatsComponent implements OnInit {
   }
 
   renderChart(containerId: string, chartOptions: Highcharts.Options): void {
-    const container = document.getElementById(containerId);
-    if (container) {
-      Highcharts.chart(containerId, chartOptions);
-    } else {
-      console.error(`Chart container with ID "${containerId}" not found.`);
+    if (isPlatformBrowser(this.platformId)) {
+      const container = document.getElementById(containerId);
+      if (container) {
+        Highcharts.chart(containerId, chartOptions);
+      } else {
+        console.error(`Chart container with ID "${containerId}" not found.`);
+      }
     }
   }
 }
