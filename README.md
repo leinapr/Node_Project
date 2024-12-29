@@ -69,6 +69,8 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ### Admin Page (CRUD with AG Grid)
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/ccdccce0-9848-41c7-8512-4f7d731ccee4" />
 
+### API Documentation Swagger (http://localhost:3000/api-docs/)
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/b0c55762-9ebf-41ba-8a6b-070e437fd039" />
 
 ---
 
