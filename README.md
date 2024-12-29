@@ -41,16 +41,29 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ## Screenshots
 
 ### Home Page
-<img width="1469" alt="image" src="https://github.com/user-attachments/assets/37b04393-d77b-4d41-b518-530f5d4695c3" />
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/d31750f8-35a3-413b-93fc-b98e69b84d0c" />
 
-### Product List
-![Product List](assets/screenshots/product-list.png)
+### Shop Page (Product List)
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/4c6effcc-138c-4442-ac27-04094f1d9d2f" />
 
-### Product Filters
+### Shop Page (Product Filters)
 ![Product Filters](assets/screenshots/filters.png)
 
-### Product Details
-![Product Details](assets/screenshots/product-details.png)
+### Product Page
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/57885683-63e8-40e7-9c15-da012e00feaa" />
+
+### Product Stats (Genre, Demographics,Types) 
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/b3f5d26b-1f70-4a33-bbff-936766af9bc1" />
+
+### About Page
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/6112e0ea-42b0-4c16-bccf-f6cc841d214c" />
+
+### Contact Page
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/9bbafb5f-d4b8-4d64-bdce-9ccdd4db147a" />
+
+### Cart Page
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/fb8548a5-a3dd-458c-b205-6c7fc0d44ff5" />
+
 
 ---
 
