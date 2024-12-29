@@ -87,7 +87,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 2. **Setup backend**:
    ```bash
-   cd backend
+   cd Node_Project/backend
    npm install
    ```
    - Create a `.env` file and configure the database connection:
@@ -110,7 +110,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 3. **Setup frontend**:
    ```bash
-   cd frontend/ecommerce-frontend
+   cd Node_Project/frontend/ecommerce-frontend
    npm install
    ng serve
    ```
