@@ -24,13 +24,13 @@ const Product = sequelize.define('Product', {
         allowNull: true
     },
     genres: {
-        type: DataTypes.ARRAY(DataTypes.STRING), // Specify the array of strings
+        type: DataTypes.ARRAY(DataTypes.STRING),
     },
     demographics: {
-        type: DataTypes.ARRAY(DataTypes.STRING), // Specify the array of strings
+        type: DataTypes.ARRAY(DataTypes.STRING), 
     },
     authors: {
-        type: DataTypes.ARRAY(DataTypes.STRING), // Specify the array of strings
+        type: DataTypes.ARRAY(DataTypes.STRING),
     },
     description: {
         type: DataTypes.TEXT

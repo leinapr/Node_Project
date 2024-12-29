@@ -1,13 +1,13 @@
 const { Sequelize } = require('sequelize');
 
-// Initialize Sequelize with database credentials
+// Initialize Sequelize withmy password
 const sequelize = new Sequelize('ecommerce', 'postgres', '12082001sad', {
     host: 'localhost',
     dialect: 'postgres',
-    logging: false // Disable SQL query logging in the console
+    logging: false
 });
 
-// Test the connection
+// Connection
 (async () => {
     try {
         await sequelize.authenticate();

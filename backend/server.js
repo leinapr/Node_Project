@@ -8,12 +8,11 @@ const swaggerUi = require('swagger-ui-express');
 const app = express();
 const port = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
-// Swagger Setup
+// Swagger 
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
@@ -29,7 +28,7 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ['./server.js', , './models/*.js'], // Points to the file where API documentation is written
+    apis: ['./server.js', , './models/*.js'], 
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
