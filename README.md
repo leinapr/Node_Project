@@ -79,8 +79,8 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/manga-shop.git
-   cd manga-shop
+   git clone https://github.com/leinapr/Node_Project.git
+   cd Node_Project
    ```
 
 2. **Setup Backend**:
@@ -91,23 +91,24 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
    - Create a `.env` file and configure the database connection:
      ```env
      DB_HOST=localhost
-     DB_USER=root
-     DB_PASSWORD=password
-     DB_NAME=manga_shop
+     DB_USER=your_postgres_user
+     DB_PASSWORD=your_postgres_password
+     DB_NAME=ecommerce
+     DB_PORT=5432
      ```
    - Initialize the database:
      ```bash
-     npm run migrate
-     npm run seed
+     psql -U your_postgres_user -d ecommerce -c "CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT, type TEXT, score FLOAT, status TEXT, volumes INT, genres TEXT[], demographics TEXT[], authors TEXT[], description TEXT, image TEXT, url TEXT, price FLOAT);"
+     psql -U your_postgres_user -d ecommerce -c "COPY products (id, name, type, score, status, volumes, genres, demographics, authors, description, image, url, price) FROM '/your/path/manga.csv' DELIMITER ';' CSV HEADER;"
      ```
    - Start the backend server:
      ```bash
-     npm start
+     node server.js
      ```
 
 3. **Setup Frontend**:
    ```bash
-   cd frontend
+   cd frontend/ecommerce-frontend
    npm install
    ng serve
    ```
