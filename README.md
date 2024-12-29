@@ -41,7 +41,7 @@ This project was built using **Angular** for the frontend, with **Node.js** and 
 ## Screenshots
 
 ### Home Page
-![Home Page](assets/screenshots/home-page.png)
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/37b04393-d77b-4d41-b518-530f5d4695c3" />
 
 ### Product List
 ![Product List](assets/screenshots/product-list.png)
