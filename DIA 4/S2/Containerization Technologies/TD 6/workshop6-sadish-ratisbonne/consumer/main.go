@@ -52,7 +52,6 @@ func main() {
 			defer f.Close()
 			log.SetOutput(f) // ✅ Redirect logs to file
 		}
-
 	}
 
 	if err := run(); err != nil {
@@ -164,58 +163,50 @@ func (p *consumer) handleHealthcheck(w http.ResponseWriter, r *http.Request) {
 // =============================================================================
 
 func (c *consumer) consumeMessages(ctx context.Context) {
-	messages := make(chan string)
-	go func() {
-		var backoff time.Duration
-
-		for {
-			select {
-			case <-ctx.Done():
-				close(messages)
-				return
-			case <-time.After(backoff):
-				result, err := c.client.BLPop(ctx, 0, c.queue).Result()
-				if err != nil {
-					backoff = min(backoff+time.Second, 5*time.Second)
-					log.Printf("Error getting message from queue: %s", err.Error())
-					continue
-				}
-				backoff = 0
-				messages <- result[1]
-			}
-		}
-	}()
-
-	log.Printf("Starting to comsume messages in %s...\n", c.queue)
+	log.Printf("Starting to consume messages in %s...\n", c.queue)
 	rand.Seed(time.Now().UnixNano())
 
-	for msg := range messages {
-		log.Printf("Received a message: %q.", msg)
-		log.Println("Processing message...")
-
-		// Let's play some russian roulette!
-		
-
-		if c.cpuBurn {
-			done := time.After(c.perMsg)
-			finished := false
-
-			for !finished {
-				select {
-				case <-done:
-					finished = true
-				default:
-				}
+	for {
+		select {
+		case <-ctx.Done():
+			log.Println("Consumer shutting down...")
+			return
+		default:
+			// Read message WITHOUT deleting it
+			msg, err := c.client.LIndex(ctx, c.queue, 0).Result()
+			if err == redis.Nil {
+				// No messages in queue, wait before retrying
+				time.Sleep(1 * time.Second)
+				continue
+			} else if err != nil {
+				log.Printf("❌ Error getting message from queue: %s", err.Error())
+				continue
 			}
-		} else {
-			time.Sleep(c.perMsg)
+
+			log.Printf("📩 Received a message: %q.", msg)
+			log.Println("⏳ Processing message...")
+
+			// Simulate message processing
+			if c.cpuBurn {
+				done := time.After(c.perMsg)
+				finished := false
+
+				for !finished {
+					select {
+					case <-done:
+						finished = true
+					default:
+					}
+				}
+			} else {
+				time.Sleep(c.perMsg)
+			}
+
+			// Mark message as processed
+			c.consumed.Inc()
+			log.Println("✅ Message processed (but not deleted).")
 		}
-
-		c.consumed.Inc()
-		log.Println("Message processed.")
 	}
-
-	log.Println("Done consuming messages.")
 }
 
 func min(a, b time.Duration) time.Duration {

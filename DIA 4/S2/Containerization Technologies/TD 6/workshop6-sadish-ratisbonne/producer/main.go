@@ -96,7 +96,7 @@ func newProducer(client *redis.Client, queue string) *producer {
 
 func (p *producer) handlePublish(w http.ResponseWriter, r *http.Request) {
 	if err := p.publish(r.Context()); err != nil {
-		http.Error(w, fmt.Sprintf("An error occured: %s", err.Error()), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("An error occurred: %s", err.Error()), http.StatusInternalServerError)
 		return
 	}
 
@@ -117,7 +117,7 @@ func (p *producer) handlePublishMany(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := p.publishMany(r.Context(), count); err != nil {
-		http.Error(w, fmt.Sprintf("An error occured: %s", err.Error()), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("An error occurred: %s", err.Error()), http.StatusInternalServerError)
 		return
 	}
 
@@ -140,14 +140,19 @@ func (p *producer) handleHealthcheck(w http.ResponseWriter, r *http.Request) {
 
 func (p *producer) publish(ctx context.Context) error {
 	if err := p.client.Ping(ctx).Err(); err != nil {
-	log.Printf("Unable to connect to redis instance: %s...", err)
-	return fmt.Errorf("failed to connect to redis: %w", err)
+		log.Printf("❌ Unable to connect to Redis: %s", err)
+		p.healthy = false
+		return fmt.Errorf("failed to connect to Redis: %w", err)
 	}
 
+	log.Println("🚀 Attempting to push message to Redis queue...")
 	if err := p.client.RPush(ctx, p.queue, "Hello :) ! 👋").Err(); err != nil {
 		p.healthy = false
+		log.Printf("❌ Failed to publish message to Redis: %v", err)
 		return fmt.Errorf("failed to publish: %w", err)
 	}
+
+	log.Println("✅ Successfully pushed message to Redis!")
 	p.published.Inc()
 	p.healthy = true
 	return nil
