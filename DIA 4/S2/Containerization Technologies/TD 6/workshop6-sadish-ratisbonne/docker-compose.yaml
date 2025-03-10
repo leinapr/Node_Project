@@ -1,0 +1,23 @@
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:8080"
+    depends_on:
+      - producer
+      - consumer
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+
+  producer:
+    build: ./producer
+    depends_on:
+      - redis
+
+  consumer:
+    build: ./consumer
+    depends_on:
+      - redis
